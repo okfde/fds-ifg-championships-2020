@@ -43,8 +43,6 @@ function createElement (tagname, opts) {
   return el
 }
 
-
-
 const teams = {
   bw: {
     captain: 'Winfried Kretschmann',
@@ -196,5 +194,79 @@ const rounds = [
 
 function init () {
   const rootContainer = document.getElementById('tournament-visual')
+  const outerContainer = createElement('div', {
+    classes: ['tournament-bracket', 'tournament-bracket--rounded']
+  })
+  debugger
 
+  for (let i = 0, l = rounds.length; i < l; i++) {
+    const round = rounds[i]
+    const roundContainer = createElement('div', {
+      classes: ['tournament-bracket__round']
+    })
+    const roundTitle = createElement('h3', {
+      classes: ['tournament-bracket__round-title'],
+      text: round.title
+    })
+    const roundMatchesList = createElement('ul', {
+      classes: ['tournament-bracket__list'],
+      text: round.title,
+      html: createMatchesListHtml(round.matches)
+    })
+
+    roundContainer.appendChild(roundTitle)
+    roundContainer.appendChild(roundMatchesList)
+    outerContainer.appendChild(roundContainer)
+  }
+
+  rootContainer.appendChild(outerContainer)
 }
+
+function createMatchesListHtml (matchesArr) {
+  const result = ''
+
+  for (let i = 0, l = matchesArr.length; i < l; i++) {
+    const match = matchesArr[i]
+    result += createElement('li', {
+      classes: ['tournament-bracket__item'],
+      html: createMatchHtml(match),
+      returnString: true
+    })
+  }
+
+  return result
+}
+
+function createMatchHtml (match) {
+  const team1 = teams[match.team1]
+  const team2 = teams[match.team2]
+
+  return `
+  <div class="tournament-bracket__match" tabindex="0">
+    <table class="tournament-bracket__table">
+      <tbody class="tournament-bracket__content">
+        <tr class="tournament-bracket__team">
+          <td class="tournament-bracket__image">
+            <img src="img/${team1.img}">
+          </td>
+          <td class="tournament-bracket__name">
+            ${team1.captain}&nbsp;
+            <span class="tournament-bracket__token" title="${team1.state}">${match.team1}</span>
+          </td>
+        </tr>
+        <tr class="tournament-bracket__team">
+          <td class="tournament-bracket__image">
+            <img src="img/${team2.img}">
+          </td>
+          <td class="tournament-bracket__name">
+            ${team2.captain}&nbsp;
+            <span class="tournament-bracket__token" title="${team2.state}">${match.team2}</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  `
+}
+
+init()
