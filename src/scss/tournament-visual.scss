@@ -2,16 +2,16 @@
 
 
 $breakpoint-xs: 24em;
-$breakpoint-sm: 38em;
-$breakpoint-md: 52em;
+$breakpoint-sm: 50em;
+$breakpoint-md: 60em;
 $breakpoint-lg: 72em;
 $bracket-color: white;
+$round-border-color: #e5e5e5;
 
 
-.tournament-visual {
+#tournament-visual {
   padding: 1rem 1rem 2rem;
   background-image: url('../img/grass.jpg');
-  background-size: contain;
   * {
     &,
     &::before,
@@ -64,7 +64,6 @@ $bracket-color: white;
     justify-content: center;
     height: 100%;
     min-height: 100%;
-    border-bottom: 1px dashed #e5e5e5;
     list-style: none;
     padding: 0 0 2em 0;
     margin: 0 0 2em 0;
@@ -78,8 +77,7 @@ $bracket-color: white;
     @media (min-width: $breakpoint-sm) {
       margin-bottom: 0;
       padding-bottom: 0;
-      border-right: 1px dashed #e5e5e5;
-      border-bottom: 0;
+      border-right: 1px dashed $round-border-color;
     }
     
     .tournament-bracket__round:last-child & {
@@ -172,8 +170,8 @@ $bracket-color: white;
 
         .tournament-bracket__round:nth-last-child(2) & {
           &::after {
-            border-radius: 0;
-            border-right: 0;
+            // border-radius: 0;
+            // border-right: 0;
           }
         }  
       }
@@ -195,15 +193,9 @@ $bracket-color: white;
         padding: 1em;
         border: 1px solid transparent;
         border-radius: 0.1em;
-        box-shadow: 0 2px 0 0 #e5e5e5;
         outline: none; 
-        cursor: pointer;
         transition: padding 0.2s ease-in-out, border 0.2s linear;
-        
-        &:focus {
-          border-color: #2196F3;
-        }
-        
+
         &::before,
         &::after {
           transition: all 0.2s linear;
@@ -266,15 +258,15 @@ $bracket-color: white;
 .tournament-bracket__round:last-child .tournament-bracket__match {
   &::before,
   &::after {
-    border-left: 0;
+    // border-left: 0;
   }
   
   &::before  {
-    border-bottom-left-radius: 0;
+    // border-bottom-left-radius: 0;
   }
   
   &::after  {
-    display: none;
+    // display: none;
   }
 }
 
@@ -299,20 +291,10 @@ $bracket-color: white;
   display: flex;
 }
 
-.tournament-bracket__country {
-  
-}
+  .tournament-bracket__image {
+    
+  }
 
-.tournament-bracket__score {
-  // display: flex;
-  // align-items: center;
-  
-  // .tournament-bracket__team:first-child & {
-  //   flex-direction: row-reverse;
-  //   padding-left: 0.75em;
-  // }
-  
-  // .tournament-bracket__team:last-child & {
-  //   padding-right: 0.75em;
-  // }
-}
+  .tournament-bracket__name {
+
+  }
