@@ -1,19 +1,19 @@
 // credits: https://codepen.io/jimmyhayek/pen/yJkdEB?editors=1100
 
 
-$breakpoint-xs: 24em;
-$breakpoint-sm: 50em;
-$breakpoint-md: 60em;
-$breakpoint-lg: 72em;
-$round-title-text: white;
-$round-title-bg: white;
+$breakpoint-xs: 576px;
+$breakpoint-sm: 768px;
+$breakpoint-md: 992px;
+$breakpoint-lg: 1200px;
 $divider: white;
 $bracket-connection: white;
 $match-background: white;
+$green-dark: rgba(60, 116, 38, 0.8);
+$green-light: rgba(137, 192, 115, 0.9);
 
 
 #tournament-visual {
-  // padding: 1rem 1rem 3rem;
+  padding: 1rem;
   background-image: url('../img/grass.jpg');
   * {
     &,
@@ -24,22 +24,9 @@ $match-background: white;
   }
 }
 
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0,0,0,0);
-  border: 0;
-}
-
-
 .tournament-bracket {
   display: flex;
   flex-direction: column;
-  
   @media (min-width: $breakpoint-sm) {
     flex-direction: row;
   }
@@ -48,19 +35,29 @@ $match-background: white;
 .tournament-bracket__round {
   display: flex;
   flex-direction: column;
-  margin-left: -3px;
+  margin-left: -2px;
   flex: 1;
+  @media (min-width: $breakpoint-sm) {
+    max-width: 17.438rem;
+  }
 }
 
   .tournament-bracket__round-title {
-    // color: $round-title;
     font-size: 1rem;
-    // font-weight: 400;
+    // font-weight: 700;
     text-align: center;
     padding-top: .5rem;
     padding-bottom: .5rem;
-    margin-bottom: 0.5em;
-    background-color: $round-title-bg;
+    margin-bottom: .5rem;
+    font-size: .875rem;
+    line-height: 1;
+    color: white;
+    background-color: $green-dark;
+    border: 1px solid $green-light;
+    @media (min-width: $breakpoint-sm) {
+      margin-right: 4px;
+      .tournament-bracket__round:last-child & { margin-right: 0; }
+    }
   }
 
   .tournament-bracket__list {
@@ -69,22 +66,15 @@ $match-background: white;
     flex-flow: row wrap;
     justify-content: center;
     flex: 1 0 auto;
-    // height: 100%;
-    // min-height: 100%;
     list-style: none;
-    padding: 0 0 2em 0;
-    margin: 0 0 2em 0;
+    padding: 0 0 1rem 0;
+    margin: 0 0 1rem 0;
     transition: padding 0.2s ease-in-out, margin 0.2s ease-in-out;
-    
-    @media (max-width: $breakpoint-xs) {
-      padding-bottom: 1em;
-      margin-bottom: 1em;
-    }
     
     @media (min-width: $breakpoint-sm) {
       margin-bottom: 0;
       padding-bottom: 0;
-      border-right: 1px dashed $divider;
+      // border-right: 1px dashed $divider;
     }
     
     .tournament-bracket__round:last-child & {
@@ -197,10 +187,15 @@ $match-background: white;
         display: flex;
         width: 100%;
         background-color: $match-background;
-        padding: .25rem;
-        border-radius: 2px;
+        padding: 2px;
+        border-radius: 3px;
         transition: padding 0.2s ease-in-out, border 0.2s linear;
         overflow: hidden;
+        outline: none;
+        &:focus {
+          outline: none;
+          box-shadow: 0 0 0 2px orange;
+        }
 
         &::before,
         &::after {
@@ -299,12 +294,16 @@ $match-background: white;
   align-items: center;
   font-size: .875rem;
   line-height: 1;
+  margin-bottom: 2px;
+  &:last-child { margin-bottom: 0; }
+  > td { padding: 0; }
 }
 
   .tournament-bracket__image {
     margin-right: .25rem;
     img {
-      width: 35px;
+      border-radius: 3px;
+      width: 30px;
       height: auto;
     }
   }

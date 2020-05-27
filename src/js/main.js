@@ -153,7 +153,7 @@ const rounds = [
     ]
   },
   {
-    title: 'Runde Halbfinale',
+    title: 'Halbfinale',
     matches: [
       {
         team1: 'sh',
@@ -236,14 +236,14 @@ function createMatch (match) {
 function createTeam (key, props) {
   return `
   <tr class="tournament-bracket__team">
-    <td class="tournament-bracket__image">
-      <img src="img/${props.img}">
-    </td>
-    <td class="tournament-bracket__name">
-      ${props.captain}&nbsp;<span class="tournament-bracket__token" title="${props.state}">(${key})</span>
-    </td>
+    <td class="tournament-bracket__image"><img src="img/${props.img}"></td>
+    <td class="tournament-bracket__name">${props.captain}&nbsp;<span class="tournament-bracket__token" title="${props.state}">(${key})</span></td>
   </tr>
   `
+}
+
+function trimWhitespace (text) {
+
 }
 
 init()
