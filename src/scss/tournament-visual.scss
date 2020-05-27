@@ -5,12 +5,15 @@ $breakpoint-xs: 24em;
 $breakpoint-sm: 50em;
 $breakpoint-md: 60em;
 $breakpoint-lg: 72em;
-$bracket-color: white;
-$round-border-color: #e5e5e5;
+$round-title-text: white;
+$round-title-bg: white;
+$divider: white;
+$bracket-connection: white;
+$match-background: white;
 
 
 #tournament-visual {
-  padding: 1rem 1rem 2rem;
+  // padding: 1rem 1rem 3rem;
   background-image: url('../img/grass.jpg');
   * {
     &,
@@ -43,18 +46,21 @@ $round-border-color: #e5e5e5;
 }
 
 .tournament-bracket__round {
-  display: block;
+  display: flex;
+  flex-direction: column;
   margin-left: -3px;
   flex: 1;
 }
 
   .tournament-bracket__round-title {
-    color: $bracket-color;
-    font-size: 0.95rem;
-    font-weight: 400;
+    // color: $round-title;
+    font-size: 1rem;
+    // font-weight: 400;
     text-align: center;
-    font-style: italic;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
     margin-bottom: 0.5em;
+    background-color: $round-title-bg;
   }
 
   .tournament-bracket__list {
@@ -62,8 +68,9 @@ $round-border-color: #e5e5e5;
     flex-direction: column;
     flex-flow: row wrap;
     justify-content: center;
-    height: 100%;
-    min-height: 100%;
+    flex: 1 0 auto;
+    // height: 100%;
+    // min-height: 100%;
     list-style: none;
     padding: 0 0 2em 0;
     margin: 0 0 2em 0;
@@ -77,7 +84,7 @@ $round-border-color: #e5e5e5;
     @media (min-width: $breakpoint-sm) {
       margin-bottom: 0;
       padding-bottom: 0;
-      border-right: 1px dashed $round-border-color;
+      border-right: 1px dashed $divider;
     }
     
     .tournament-bracket__round:last-child & {
@@ -135,12 +142,12 @@ $round-border-color: #e5e5e5;
           display: block;
           width: 1em;
           height: 45%;
-          border-right: 2px solid $bracket-color;
+          border-right: 2px solid $bracket-connection;
         }
 
         &:nth-child(odd)::after {
           top: 50%;
-          border-top: 2px solid $bracket-color;
+          border-top: 2px solid $bracket-connection;
           transform: translateY(-1px);
           
           .tournament-bracket--rounded & {
@@ -150,7 +157,7 @@ $round-border-color: #e5e5e5;
         
         &:nth-child(even)::after {
           bottom: 50%;
-          border-bottom: 2px solid $bracket-color;
+          border-bottom: 2px solid $bracket-connection;
           transform: translateY(1px);
           
           .tournament-bracket--rounded & {
@@ -189,12 +196,11 @@ $round-border-color: #e5e5e5;
       .tournament-bracket__match {
         display: flex;
         width: 100%;
-        background-color: #ffffff;
-        padding: 1em;
-        border: 1px solid transparent;
-        border-radius: 0.1em;
-        outline: none; 
+        background-color: $match-background;
+        padding: .25rem;
+        border-radius: 2px;
         transition: padding 0.2s ease-in-out, border 0.2s linear;
+        overflow: hidden;
 
         &::before,
         &::after {
@@ -202,7 +208,7 @@ $round-border-color: #e5e5e5;
         }
         
         @media (max-width: $breakpoint-xs) {
-          padding: 0.75em 0.5em;
+          // padding: 0.75em 0.5em;
         }
         
         @media (min-width: $breakpoint-sm) {
@@ -215,12 +221,12 @@ $round-border-color: #e5e5e5;
             display: block;
             width: 1em;
             height: 10%;
-            border-left: 2px solid $bracket-color;
+            border-left: 2px solid $bracket-connection;
           }
 
           &::before  {
             bottom: 50%;
-            border-bottom: 2px solid $bracket-color;
+            border-bottom: 2px solid $bracket-connection;
             transform: translate(0, 1px);
             
             .tournament-bracket--rounded & {
@@ -230,7 +236,7 @@ $round-border-color: #e5e5e5;
 
           &::after  {
             top: 50%;
-            border-top: 2px solid $bracket-color;
+            border-top: 2px solid $bracket-connection;
             transform: translate(0, 0);
             
             .tournament-bracket--rounded & {
@@ -280,6 +286,7 @@ $round-border-color: #e5e5e5;
 .tournament-bracket__content {
   display: flex;
   flex-direction: column;
+  
 }
 
 
@@ -289,16 +296,23 @@ $round-border-color: #e5e5e5;
 
 .tournament-bracket__team {
   display: flex;
+  align-items: center;
+  font-size: .875rem;
+  line-height: 1;
 }
 
   .tournament-bracket__image {
-    
+    margin-right: .25rem;
+    img {
+      width: 35px;
+      height: auto;
+    }
   }
 
   .tournament-bracket__name {
-
   }
 
   .tournament-bracket__token {
-
+    text-transform: uppercase;
+    font-weight: 600;
   }
