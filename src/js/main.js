@@ -223,7 +223,7 @@ function init () {
 }
 
 function createMatchesListHtml (matchesArr) {
-  const result = ''
+  let result = ''
 
   for (let i = 0, l = matchesArr.length; i < l; i++) {
     const match = matchesArr[i]
