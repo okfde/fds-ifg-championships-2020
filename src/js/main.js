@@ -88,42 +88,42 @@ const rounds = [
       {
         team1: 'sh',
         team2: 'st',
-        winner: 'st'
+        winner: 'team1'
       },
       {
         team1: 'hb',
         team2: 'mv',
-        winner: 'mv'
+        winner: 'team1'
       },
       {
         team1: 'rp',
         team2: 'he',
-        winner: 'he'
+        winner: 'team1'
       },
       {
         team1: 'be',
         team2: 'bb',
-        winner: 'bb'
+        winner: 'team1'
       },
       {
         team1: 'nw',
         team2: 'ni',
-        winner: 'ni'
+        winner: 'team1'
       },
       {
         team1: 'sn',
         team2: 'by',
-        winner: 'by'
+        winner: 'team1'
       },
       {
         team1: 'hh',
         team2: 'bw',
-        winner: 'bw'
+        winner: 'team1'
       },
       {
         team1: 'sl',
         team2: 'th',
-        winner: 'th'
+        winner: 'team1'
       },
     ]
   },
@@ -133,22 +133,22 @@ const rounds = [
       {
         team1: 'sh',
         team2: 'st',
-        winner: 'st'
+        winner: 'team1'
       },
       {
         team1: 'hb',
         team2: 'mv',
-        winner: 'mv'
+        winner: 'team1'
       },
       {
         team1: 'rp',
         team2: 'he',
-        winner: 'he'
+        winner: 'team1'
       },
       {
         team1: 'be',
         team2: 'bb',
-        winner: 'bb'
+        winner: 'team1'
       },
     ]
   },
@@ -158,12 +158,12 @@ const rounds = [
       {
         team1: 'sh',
         team2: 'st',
-        winner: 'st'
+        winner: 'team1'
       },
       {
         team1: 'hb',
         team2: 'mv',
-        winner: 'mv'
+        winner: 'team1'
       },
     ]
   },
@@ -173,7 +173,7 @@ const rounds = [
       {
         team1: 'sh',
         team2: 'st',
-        winner: 'st'
+        winner: 'team1'
       },
     ]
   },
@@ -237,7 +237,7 @@ function createTeam (key, props) {
   return `
   <tr class="tournament-bracket__team">
     <td class="tournament-bracket__image"><img src="img/${props.img}"></td>
-    <td class="tournament-bracket__name">${props.captain}&nbsp;<span class="tournament-bracket__token" title="${props.state}">(${key})</span></td>
+    <td><span class="tournament-bracket__name">${props.captain}</span>&nbsp;<span class="tournament-bracket__token" title="${props.state}">(${key})</span></td>
   </tr>
   `
 }
