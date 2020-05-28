@@ -285,7 +285,7 @@ rounds.forEach(r => {
 
 function init () {
   const imageSrc = rootContainer.querySelector('img').src
-  imagePath = imageSrc.replace('spinner.gif', '')
+  imagePath = imageSrc.replace('1x1.png', '')
   loggedIn = document.getElementById('userDropdownMenu') !== null
 
   if (!loggedIn) {
