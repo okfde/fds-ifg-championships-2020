@@ -134,95 +134,110 @@ const rounds = [
     title: 'Runde 1',
     matches: [
       {
+        number: 1,
         team1: 'sh',
         team2: 'st',
-        winner: 'team1'
+        // winner: ''
       },
       {
+        number: 2,
         team1: 'hb',
         team2: 'mv',
-        winner: 'team1'
+        // winner: ''
       },
       {
+        number: 3,
         team1: 'rp',
         team2: 'he',
-        winner: 'team1'
+        // winner: ''
       },
       {
+        number: 4,
         team1: 'be',
         team2: 'bb',
-        winner: 'team1'
+        // winner: ''
       },
       {
+        number: 5,
         team1: 'nw',
         team2: 'ni',
-        winner: 'team1'
+        // winner: ''
       },
       {
+        number: 6,
         team1: 'sn',
         team2: 'by',
-        winner: 'team1'
+        // winner: ''
       },
       {
+        number: 7,
         team1: 'hh',
         team2: 'bw',
-        winner: 'team1'
+        // winner: ''
       },
       {
+        number: 8,
         team1: 'sl',
         team2: 'th',
-        winner: 'team1'
+        // winner: ''
       },
     ]
   },
   {
     title: 'Runde 2',
     matches: [
-      {
-        team1: 'sh',
-        team2: 'st',
-        winner: 'team1'
-      },
-      {
-        team1: 'hb',
-        team2: 'mv',
-        winner: 'team1'
-      },
-      {
-        team1: 'rp',
-        team2: 'he',
-        winner: 'team1'
-      },
-      {
-        team1: 'be',
-        team2: 'bb',
-        winner: 'team1'
-      },
+      // {
+      //   number: 9,
+      //   team1: '',
+      //   team2: '',
+      //   winner: ''
+      // },
+      // {
+      //   number: 10,
+      //   team1: '',
+      //   team2: '',
+      //   winner: ''
+      // },
+      // {
+      //   number: 11,
+      //   team1: '',
+      //   team2: '',
+      //   winner: ''
+      // },
+      // {
+      //   number: 12,
+      //   team1: '',
+      //   team2: '',
+      //   winner: ''
+      // },
     ]
   },
   {
     title: 'Halbfinale',
     matches: [
-      {
-        team1: 'sh',
-        team2: 'st',
-        winner: 'team1'
-      },
-      {
-        team1: 'hb',
-        team2: 'mv',
-        winner: 'team1'
-      },
+      // {
+      //   number: 13,
+      //   team1: '',
+      //   team2: '',
+      //   winner: ''
+      // },
+      // {
+      //   number: 14,
+      //   team1: '',
+      //   team2: '',
+      //   winner: ''
+      // },
     ]
   },
   {
     title: 'Finale',
     matches: [
-      {
-        team1: 'sh',
-        team2: 'st',
-        winner: 'team1'
-      },
+      // {
+      //   number: 15,
+      //   team1: '',
+      //   team2: '',
+      //   winner: ''
+      // },
     ]
   },
 ]
