@@ -30,7 +30,7 @@ const paths = {
 function webserver () {
   connect.server({
     livereload: true,
-    port: 8000,
+    port: 8001,
     host: 'localhost',
     root: 'dist'
   })
