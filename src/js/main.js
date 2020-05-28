@@ -1,3 +1,5 @@
+(function(){
+
 const teams = {
   bw: {
     captain: {
@@ -242,19 +244,103 @@ const rounds = [
   },
 ]
 
+const betURL = '/tippspiel/'
+const betPrefix = 'fds_meisterschaften_2020_'
+
+function getBet(callback, data) {
+  var request = new XMLHttpRequest();
+  request.open(data ? 'POST' : 'GET', betURL, true);
+  if (data) {
+    request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+    request.setRequestHeader('X-CSRFToken', document.querySelector('[name=csrfmiddlewaretoken]').value)
+  }
+  request.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+  request.onload = function() {
+    if (this.status >= 200 && this.status < 400) {
+      // Success!
+      var data = JSON.parse(this.response);
+      callback(data)
+    } else {
+      // We reached our target server, but it returned an error
+      window.alert('Error')
+    }
+  };
+  request.onerror = function() {
+    window.alert('Error')
+  };
+  request.send(data);
+}
+
+var imagePath = "img/"
+var loggedIn = false
+var userBets = {}
+var loading = false
+var minBettableMatchNumber = 1
+
+rounds.forEach(r => {
+  if (r.matches.length > 0) {
+    minBettableMatchNumber = r.matches[0].number
+  }
+})
+
 function init () {
-  const rootContainer = document.getElementById('tournament-visual')
-  rootContainer.innerHTML = `
+  const imageSrc = rootContainer.querySelector('img').src
+  imagePath = imageSrc.replace('spinner.gif', '')
+  loggedIn = document.getElementById('userDropdownMenu') !== null
+
+  if (!loggedIn) {
+    createTournament()
+  } else {
+    getBet(function (data) {
+      userBets = data.user || {}
+      createTournament()
+    })
+  }
+}
+
+function placeBet () {
+  const el = this
+  const team = el.dataset.team
+  const matchNumber = el.dataset.match
+
+  if (!loggedIn) {
+    window.alert("Sie müssen eingeloggt sein, um am Tippspiel teilzunehmen.")
+    return
+  }
+  if (loading) {
+    window.alert("Ihre letzte Aktion wird noch verarbeitet.")
+    return
+  }
+
+  userBets[betPrefix + matchNumber] = team
+  loading = true
+  renderBetByMatch(matchNumber, true)
+
+  getBet(function (data) {
+    userBets = data.user || {}
+    loading = false
+    renderBetByMatch(matchNumber, false)
+  }, `match=${matchNumber}&bet=${team}`)
+
+}
+
+
+function createTournament () {
+  rootContainer.innerHTML =`
     <div class="tournament-bracket tournament-bracket--rounded">
       ${createRounds(rounds)}
     </div>
     `
+  const betStars = rootContainer.querySelectorAll('.tournament-bracket__tip a')
+  Array.from(betStars).forEach((betStar) => {
+    betStar.addEventListener('click', placeBet)
+  })
 }
 
 function createRounds (rounds) {
   let result = ''
   for (let i = 0, l = rounds.length; i < l; i++) {
-    result += createRound(rounds[i])
+    result += createRound(rounds[i], i + 1)
   }
   return result
 }
@@ -263,19 +349,21 @@ function createRound (round) {
   return `
   <div class="tournament-bracket__round">
     <h3 class="tournament-bracket__round-title">${round.title}</h3>
+    ${round.matches && round.matches.length > 0 ? `
     <ul class="tournament-bracket__list">
       ${createMatches(round.matches)}
     </ul>
+    ` : ''}
   </div>
   `
 }
 
 function createMatches (matchesArr) {
-  let result = ''
+  let result = []
   for (let i = 0, l = matchesArr.length; i < l; i++) {
-    result += createMatch(matchesArr[i])
+    result.push(createMatch(matchesArr[i]))
   }
-  return result
+  return result.join('')
 }
 
 function createMatch (match) {
@@ -287,8 +375,8 @@ function createMatch (match) {
     <div class="tournament-bracket__match" tabindex="0">
       <table class="tournament-bracket__table">
         <tbody class="tournament-bracket__content">
-          ${createTeam(match.team1, team1, match.winner === 'team1')}
-          ${createTeam(match.team2, team2, match.winner === 'team2')}
+          ${createTeam(match.team1, team1, match.winner === 'team1', match.number)}
+          ${createTeam(match.team2, team2, match.winner === 'team2', match.number)}
         </tbody>
       </table>
     </div>
@@ -296,24 +384,50 @@ function createMatch (match) {
   `
 }
 
-function createTeam (key, props, isWinner) {
+function createTeam (key, props, isWinner, matchNumber) {
   const title = `${props.captain.firstName} ${props.captain.lastName} (${props.state})`
   return `
   <tr class="tournament-bracket__team">
-    <td class="tournament-bracket__image" title="${title}"><img src="img/${props.img}"></td>
+    <td class="tournament-bracket__image" title="${title}"><img src="${imagePath}${props.img}"></td>
     <td class="tournament-bracket__label" title="${title}">
       <span class="tournament-bracket__name">${props.captain.firstName.charAt(0)}. ${props.captain.lastName}</span>&nbsp;<span class="tournament-bracket__token" title="${props.state}">(${key})</span>
     </td>
     <td class="tournament-bracket__result" title="Gewinner">${isWinner ? '🏆️&nbsp;' : ''}</td>
     <td class="tournament-bracket__tip">
-      <a href=""><i class="fa fa-star-o" aria-hidden="true"></i></a>
+      ${ matchNumber >= minBettableMatchNumber ?
+        `<a href="#" data-team="${key}" data-match="${matchNumber}">${renderBet(key, matchNumber, true)}</a>` :
+        renderBet(key, matchNumber, false)
+      }
     </td>
   </tr>
   `
 }
 
-function trimWhitespace (text) {
-
+function renderBetByMatch (matchNumber, loading) {
+  const betStars = rootContainer.querySelectorAll(`.tournament-bracket__tip a[data-match="${matchNumber}"]`)
+  Array.from(betStars).forEach((betStar) => {
+    if (loading) {
+      betStar.innerHTML = `<i class="fa fa-spinner" aria-hidden="true"></i>`
+    } else {
+      betStar.innerHTML = renderBet(betStar.dataset.team, matchNumber, true)
+    }
+  })
 }
 
-init()
+function renderBet (team, matchNumber, bettable) {
+  if (userBets) {
+    const betted = userBets[betPrefix + matchNumber] === team
+    if (betted) {
+      return `<i class="fa fa-star" aria-hidden="true"></i>`
+    }
+  }
+  if (bettable) {
+    return `<i class="fa fa-star-o" aria-hidden="true"></i>`
+  }
+  return ``
+}
+
+const rootContainer = document.getElementById('tournament-visual')
+init();
+
+}())
