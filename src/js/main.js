@@ -221,7 +221,7 @@ const rounds = [
       {
         team1: 'sh',
         team2: 'st',
-        winner: null
+        winner: 'team1'
       },
     ]
   },
@@ -286,8 +286,8 @@ function createTeam (key, props, isWinner) {
   return `
   <tr class="tournament-bracket__team">
     <td class="tournament-bracket__image" title="${title}"><img src="img/${props.img}"></td>
-    <td class="tournament-bracket__name" title="${title}">
-      <span class="tournament-bracket__firstname">${props.captain.firstName.charAt(0)}.</span><span class="tournament-bracket__lastname">${props.captain.lastName}</span>&nbsp;<span class="tournament-bracket__token" title="${props.state}">(${key})</span>
+    <td class="tournament-bracket__label" title="${title}">
+      <span class="tournament-bracket__name">${props.captain.firstName.charAt(0)}. ${props.captain.lastName}</span>&nbsp;<span class="tournament-bracket__token" title="${props.state}">(${key})</span>
     </td>
     <td class="tournament-bracket__result" title="Gewinner">${isWinner ? '🏆️&nbsp;' : ''}</td>
     <td class="tournament-bracket__tip">

@@ -314,19 +314,30 @@ $green-light: rgba(137, 192, 115, 0.9);
     }
   }
 
-  .tournament-bracket__name {
+  .tournament-bracket__label {
     white-space: nowrap;
   }
 
-  .tournament-bracket__firstname {
-    &::after {
-      content: ' '
+  .tournament-bracket__name {
+    display: inline-block;
+    vertical-align: middle;
+    white-space: nowrap;
+    line-height: 1.5;
+    @media (min-width: $breakpoint-md) {
+      max-width: 100px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    @media (min-width: $breakpoint-lg) {
+      max-width: none;
+      overflow: visible;
+      text-overflow: unset;
     }
   }
 
-  // .tournament-bracket__lastname {}
-  
   .tournament-bracket__token {
+    display: inline-block;
+    vertical-align: middle;
     text-transform: uppercase;
     font-weight: 600;
   }
