@@ -298,7 +298,8 @@ function init () {
   }
 }
 
-function placeBet () {
+function placeBet (e) {
+  e.preventDefault()
   const el = this
   const team = el.dataset.team
   const matchNumber = el.dataset.match
