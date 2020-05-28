@@ -27,7 +27,7 @@ $green-light: rgba(137, 192, 115, 0.9);
 .tournament-bracket {
   display: flex;
   flex-direction: column;
-  @media (min-width: $breakpoint-sm) {
+  @media (min-width: $breakpoint-md) {
     flex-direction: row;
   }
 }
@@ -37,7 +37,7 @@ $green-light: rgba(137, 192, 115, 0.9);
   flex-direction: column;
   margin-left: -2px;
   flex: 1;
-  @media (min-width: $breakpoint-sm) {
+  @media (min-width: $breakpoint-md) {
     max-width: 17.438rem;
   }
 }
@@ -54,7 +54,7 @@ $green-light: rgba(137, 192, 115, 0.9);
     color: white;
     background-color: $green-dark;
     border: 1px solid $green-light;
-    @media (min-width: $breakpoint-sm) {
+    @media (min-width: $breakpoint-md) {
       margin-right: 4px;
       .tournament-bracket__round:last-child & { margin-right: 0; }
     }
@@ -71,7 +71,7 @@ $green-light: rgba(137, 192, 115, 0.9);
     margin: 0 0 1rem 0;
     transition: padding 0.2s ease-in-out, margin 0.2s ease-in-out;
     
-    @media (min-width: $breakpoint-sm) {
+    @media (min-width: $breakpoint-md) {
       margin-bottom: 0;
       padding-bottom: 0;
       // border-right: 1px dashed $divider;
@@ -115,7 +115,7 @@ $green-light: rgba(137, 192, 115, 0.9);
         }
       }
       
-      @media (min-width: $breakpoint-sm) {
+      @media (min-width: $breakpoint-md) {
         padding: 0.5em 1em;
         // flex-grow: 2;
         width: 100%;
@@ -206,7 +206,7 @@ $green-light: rgba(137, 192, 115, 0.9);
           // padding: 0.75em 0.5em;
         }
         
-        @media (min-width: $breakpoint-sm) {
+        @media (min-width: $breakpoint-md) {
           &::before,
           &::after {
             position: absolute;
@@ -256,20 +256,20 @@ $green-light: rgba(137, 192, 115, 0.9);
         }
       }
 
-.tournament-bracket__round:last-child .tournament-bracket__match {
-  &::before,
-  &::after {
-    // border-left: 0;
-  }
+// .tournament-bracket__round:last-child .tournament-bracket__match {
+//   &::before,
+//   &::after {
+//     // border-left: 0;
+//   }
   
-  &::before  {
-    // border-bottom-left-radius: 0;
-  }
+//   &::before  {
+//     // border-bottom-left-radius: 0;
+//   }
   
-  &::after  {
-    // display: none;
-  }
-}
+//   &::after  {
+//     // display: none;
+//   }
+// }
 
 .tournament-bracket__round:first-child .tournament-bracket__match {
   &::before,
@@ -294,8 +294,14 @@ $green-light: rgba(137, 192, 115, 0.9);
   align-items: center;
   font-size: .875rem;
   line-height: 1;
-  margin-bottom: 2px;
-  &:last-child { margin-bottom: 0; }
+  margin-bottom: 1px;
+  padding-bottom: 1px;
+  border-bottom: 1px solid lightgray;
+  &:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
   > td { padding: 0; }
 }
 
@@ -303,20 +309,39 @@ $green-light: rgba(137, 192, 115, 0.9);
     margin-right: .25rem;
     img {
       border-radius: 3px;
-      width: 30px;
+      width: 28px;
       height: auto;
     }
   }
 
   .tournament-bracket__name {
-    // display: inline-block
-    // max-width: 100px;
-    // white-space: nowrap;
-    // overflow: hidden;
-    // text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
+  .tournament-bracket__firstname {
+    &::after {
+      content: ' '
+    }
+  }
+
+  // .tournament-bracket__lastname {}
+  
   .tournament-bracket__token {
     text-transform: uppercase;
     font-weight: 600;
+  }
+
+  .tournament-bracket__result {
+    margin-left: auto;
+    text-align: right;
+  }
+
+  .tournament-bracket__tip {
+    // margin-left: auto;
+    margin-right: .5rem;
+    font-size: 1rem;
+    white-space: nowrap;
+    &:hover i {
+      color: darkorange;
+    }
   }

@@ -1,81 +1,129 @@
 const teams = {
   bw: {
-    captain: 'Winfried Kretschmann',
+    captain: {
+      firstName: 'Winfried',
+      lastName: 'Kretschmann'
+    },
     state: 'Baden-Württemberg',
     img: 'kretschmann.png'
   },
   by: {
-    captain: 'Markus Söder',
+    captain: {
+      firstName: 'Markus',
+      lastName: 'Söder'
+    },
     state: 'Bayern',
     img: 'soeder.png'
   },
   be: {
-    captain: 'Michael Müller',
+    captain: {
+      firstName: 'Michael',
+      lastName: 'Müller'
+    },
     state: 'Berlin',
     img: 'mueller.png'
   },
   bb: {
-    captain: 'Dietmar Woidke',
+    captain: {
+      firstName: 'Dietmar',
+      lastName: 'Woidke'
+    },
     state: 'Brandenburg',
     img: 'woidke.png'
   },
   hb: {
-    captain: 'Andreas Bovenschulte',
+    captain: {
+      firstName: 'Andreas',
+      lastName: 'Bovenschulte'
+    },
     state: 'Bremen',
     img: 'bovenschulte.png'
   },
   hh: {
-    captain: 'Peter Tschentscher',
+    captain: {
+      firstName: 'Peter',
+      lastName: 'Tschentscher'
+    },
     state: 'Hamburg',
     img: 'tschentscher.png'
   },
   he: {
-    captain: 'Volker Bouffier',
+    captain: {
+      firstName: 'Volker',
+      lastName: 'Bouffier'
+    },
     state: 'Hessen',
     img: 'bouffier.png'
   },
   mv: {
-    captain: 'Manuela Schwesig',
+    captain: {
+      firstName: 'Manuela',
+      lastName: 'Schwesig'
+    },
     state: 'Mecklenburg-Vorpommern',
     img: 'schwesig.png'
   },
   ni: {
-    captain: 'Stephan Weil',
+    captain: {
+      firstName: 'Stephan',
+      lastName: 'Weil'
+    },
     state: 'Niedersachsen',
     img: 'weil.png'
   },
   nw: {
-    captain: 'Armin Laschet',
+    captain: {
+      firstName: 'Armin',
+      lastName: 'Laschet'
+    },
     state: 'Nordrhein-Westfalen',
     img: 'laschet.png'
   },
   rp: {
-    captain: 'Malu Dreyer',
+    captain: {
+      firstName: 'Malu',
+      lastName: 'Dreyer'
+    },
     state: 'Rheinland-Pfalz',
     img: 'dreyer.png'
   },
   sl: {
-    captain: 'Tobias Hans',
+    captain: {
+      firstName: 'Tobias',
+      lastName: 'Hans'
+    },
     state: 'Saarland',
     img: 'hans.png'
   },
   sn: {
-    captain: 'Michael Kretschmer',
+    captain: {
+      firstName: 'Michael',
+      lastName: 'Kretschmer'
+    },
     state: 'Sachsen',
     img: 'kretschmer.png'
   },
   st: {
-    captain: 'Reiner Haseloff',
+    captain: {
+      firstName: 'Reiner',
+      lastName: 'Haseloff'
+    },
     state: 'Sachsen-Anhalt',
     img: 'haseloff.png'
   },
   sh: {
-    captain: 'Daniel Günther',
+    captain: {
+      firstName: 'Daniel',
+      lastName: 'Günther'
+    },
     state: 'Schleswig-Holstein',
     img: 'guenther.png'
   },
   th: {
-    captain: 'Bodo Ramelow',
+    captain: {
+      firstName: 'Bodo',
+      lastName: 'Ramelow'
+    },
     state: 'Thüringen',
     img: 'ramelow.png'
   },
@@ -173,7 +221,7 @@ const rounds = [
       {
         team1: 'sh',
         team2: 'st',
-        winner: 'team1'
+        winner: null
       },
     ]
   },
@@ -224,8 +272,8 @@ function createMatch (match) {
     <div class="tournament-bracket__match" tabindex="0">
       <table class="tournament-bracket__table">
         <tbody class="tournament-bracket__content">
-          ${createTeam(match.team1, team1)}
-          ${createTeam(match.team2, team2)}
+          ${createTeam(match.team1, team1, match.winner === 'team1')}
+          ${createTeam(match.team2, team2, match.winner === 'team2')}
         </tbody>
       </table>
     </div>
@@ -233,11 +281,18 @@ function createMatch (match) {
   `
 }
 
-function createTeam (key, props) {
+function createTeam (key, props, isWinner) {
+  const title = `${props.captain.firstName} ${props.captain.lastName} (${props.state})`
   return `
   <tr class="tournament-bracket__team">
-    <td class="tournament-bracket__image"><img src="img/${props.img}"></td>
-    <td><span class="tournament-bracket__name">${props.captain}</span>&nbsp;<span class="tournament-bracket__token" title="${props.state}">(${key})</span></td>
+    <td class="tournament-bracket__image" title="${title}"><img src="img/${props.img}"></td>
+    <td class="tournament-bracket__name" title="${title}">
+      <span class="tournament-bracket__firstname">${props.captain.firstName.charAt(0)}.</span><span class="tournament-bracket__lastname">${props.captain.lastName}</span>&nbsp;<span class="tournament-bracket__token" title="${props.state}">(${key})</span>
+    </td>
+    <td class="tournament-bracket__result" title="Gewinner">${isWinner ? '🏆️&nbsp;' : ''}</td>
+    <td class="tournament-bracket__tip">
+      <a href=""><i class="fa fa-star-o" aria-hidden="true"></i></a>
+    </td>
   </tr>
   `
 }
