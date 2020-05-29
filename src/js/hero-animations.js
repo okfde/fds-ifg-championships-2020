@@ -31,12 +31,31 @@
   }
 
   function getAnimationTime () {
-    const miliseconds = 15000
+    const miliseconds = 20000
     return miliseconds
+  }
+
+  let recentDelayTimes = []
+  function getDelayTime () {
+    // TODO: :/
+    let randomNumRound
+    while (true) {
+      const randomNum = getRandomArbitrary(0, 20000)
+      randomNumRound = Math.round(randomNum/1000)*1000
+      if (recentDelayTimes.includes(randomNumRound)) {
+        continue
+      }
+      recentDelayTimes.splice(0, 0, randomNumRound)
+      recentDelayTimes = recentDelayTimes.slice(0, 16)
+      break
+    }
+    console.warn(randomNumRound, recentDelayTimes)
+    return randomNumRound
   }
   
   function animateImage (imgPath, container, containerSize) {
-    const randomDelay = getRandomArbitrary(0, 20000)
+    const randomDelay = getDelayTime()
+
     setTimeout(() => {
       const imgEl = renderImage(imgPath)
       container.appendChild(imgEl)
