@@ -1,4 +1,8 @@
+$imgSize: 70px;
+
 .hero {
+  position: relative;
+  overflow: hidden;
   padding-top: 64px;
   padding-bottom: 64px;
   background-image: url('../img/space.png');
@@ -8,7 +12,39 @@
     padding-bottom: 150px;
   }
   &__logo {
+    position: relative;
+    z-index: 50;
     width: 100%;
     height: auto;
   }
+  &__animations {
+
+  }
+}
+
+@keyframes moveHorizontally {
+  from {
+    left: -#{$imgSize};
+  }
+
+  to {
+    left: 100%;
+  }
+}
+
+.floating-head {
+  z-index: 10;
+  position: absolute;
+  width: $imgSize;
+  height: $imgSize;
+  border-radius: 50%;
+  filter: grayscale(100%) brightness(50%);
+  // opacity: .5;
+  // display: none;
+
+  // animation-duration: 10s;
+  // animation-name: moveHorizontally;
+  // animation-iteration-count: infinite;
+  // animation-direction: normal;
+  // animation-timing-function: linear;
 }
