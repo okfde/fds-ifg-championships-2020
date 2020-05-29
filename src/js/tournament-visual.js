@@ -153,8 +153,8 @@
   })
 
   function init () {
-    const imageSrc = rootContainer.querySelector('img').src
-    imagePath = imageSrc.replace('1x1.png', '')
+    const pathHelperImage = document.getElementById('path-helper')
+    imagePath = pathHelperImage.src.replace('1x1.png', '')
     loggedIn = document.getElementById('userDropdownMenu') !== null
 
     if (!loggedIn) {
