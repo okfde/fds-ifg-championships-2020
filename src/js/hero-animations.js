@@ -35,22 +35,21 @@
     return miliseconds
   }
 
-  let recentDelayTimes = []
-  function getDelayTime () {
-    // TODO: :/
-    let randomNumRound
-    while (true) {
-      const randomNum = getRandomArbitrary(0, 20000)
-      randomNumRound = Math.round(randomNum/1000)*1000
-      if (recentDelayTimes.includes(randomNumRound)) {
-        continue
-      }
-      recentDelayTimes.splice(0, 0, randomNumRound)
-      recentDelayTimes = recentDelayTimes.slice(0, 16)
-      break
+  function createDelayTimes () {
+    const result = []
+    let i = 16
+    let last = 0
+    while (i--) {
+      last = last + getRandomArbitrary(2000, 2500)
+      result.push(last)
     }
-    console.warn(randomNumRound, recentDelayTimes)
-    return randomNumRound
+    return result
+  }
+
+  const deslayTimes = createDelayTimes()
+  function getDelayTime () {
+    const randomTime = deslayTimes[Math.floor(Math.random() * deslayTimes.length)];
+    return randomTime
   }
   
   function animateImage (imgPath, container, containerSize) {

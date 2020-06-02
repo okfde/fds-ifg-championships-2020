@@ -1,4 +1,5 @@
-$imgSize: 70px;
+$imgSizeSmall: 35px;
+$imgSizeMedium: 60px;
 
 .hero {
   position: relative;
@@ -20,22 +21,21 @@ $imgSize: 70px;
 }
 
 @keyframes moveHorizontally {
-  from {
-    left: -#{$imgSize};
-  }
-
-  to {
-    left: 100%;
-  }
+  from { left: -#{$imgSizeMedium}; }
+  to { left: 100%; }
 }
 
 .floating-head {
   z-index: 10;
   position: absolute;
-  width: $imgSize;
-  height: $imgSize;
+  width: $imgSizeSmall;
+  height: $imgSizeSmall;
   border-radius: 50%;
   filter: grayscale(100%) brightness(50%);
+  @media (min-width: $breakpoint-md) {
+    width: $imgSizeMedium;
+    height: $imgSizeMedium;
+  }
   // opacity: .5;
   // display: none;
 
