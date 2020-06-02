@@ -142,6 +142,7 @@
 
   var imagePath = "img/"
   var loggedIn = false
+  var namePlaceholder = ''
   var userBets = {}
   var loading = false
   var minBettableMatchNumber = 1
@@ -156,6 +157,9 @@
     const pathHelperImage = document.getElementById('path-helper')
     imagePath = pathHelperImage.src.replace('1x1.png', '')
     loggedIn = document.getElementById('userDropdownMenu') !== null
+    if (loggedIn) {
+      namePlaceholder = document.querySelector('#userDropdownMenu span').textContent
+    }
 
     if (!loggedIn) {
       createTournament()
@@ -177,6 +181,15 @@
       window.alert("Sie müssen eingeloggt sein, um am Tippspiel teilzunehmen.")
       return
     }
+
+    if (!userBets[betPrefix + "name"]) {
+      let name = window.prompt("Unter welchem Namen möchten Sie in der Tipp-Tabelle erscheinen?", namePlaceholder);
+      if (name === null) {
+        return
+      }
+      userBets[betPrefix + "name"] = name.substr(0, 50)
+    }
+    
     if (loading) {
       window.alert("Ihre letzte Aktion wird noch verarbeitet.")
       return
@@ -190,7 +203,7 @@
       userBets = data.user || {}
       loading = false
       renderBetByMatch(matchNumber, false)
-    }, `match=${matchNumber}&bet=${team}`)
+    }, `match=${matchNumber}&bet=${team}&name=${encodeURIComponent(userBets[betPrefix + "name"])}`)
 
   }
 
