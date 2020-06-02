@@ -12,9 +12,12 @@ $green-dark: rgba(60, 116, 38, 0.8);
 $green-light: rgba(137, 192, 115, 0.9);
 
 
-#tournament-visual {
-  padding: 1rem;
+.tournament-visual-wrap {
   background-image: url('../img/grass.jpg');
+}
+
+#tournament-visual {
+  padding: 2rem 1rem;
   * {
     &,
     &::before,

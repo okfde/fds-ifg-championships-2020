@@ -52,7 +52,11 @@ function scssTask () {
 }
 
 function jsTask () {
-  return src([paths.src.js])
+  return src([
+    'src/js/teams.js',
+    'src/js/hero-animations.js',
+    'src/js/tournament-visual.js'
+  ])
     .pipe(sourcemaps.init()) // initialize sourcemaps first
     .pipe(babel({
       presets: ['@babel/preset-env']
