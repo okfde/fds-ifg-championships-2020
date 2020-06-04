@@ -257,8 +257,8 @@
       <div class="tournament-bracket__match" tabindex="0">
         <table class="tournament-bracket__table">
           <tbody class="tournament-bracket__content">
-            ${createTeam(match.team1, team1, match.winner === 'team1', match.number)}
-            ${createTeam(match.team2, team2, match.winner === 'team2', match.number)}
+            ${createTeam(match.team1, team1, match.winner === 'team1', match)}
+            ${createTeam(match.team2, team2, match.winner === 'team2', match)}
           </tbody>
         </table>
       </div>
@@ -266,13 +266,17 @@
     `
   }
 
-  function createTeam (key, props, isWinner, matchNumber) {
+  function createTeam (key, props, isWinner, match) {
     const title = `${props.captain.firstName} ${props.captain.lastName} (${props.state})`
     return `
     <tr class="tournament-bracket__team">
       <td class="tournament-bracket__image" title="${title}"><img src="${imagePath}${props.img}"></td>
       <td class="tournament-bracket__label" title="${title}">
-        <span class="tournament-bracket__name">${props.captain.firstName.charAt(0)}. ${props.captain.lastName}</span>&nbsp;<span class="tournament-bracket__token" title="${props.state}">(${key})</span>
+        <span class="tournament-bracket__name">
+          ${match.request ? `<a href="/a/${match.request}">` : ''}
+          ${props.captain.firstName.charAt(0)}. ${props.captain.lastName}
+          ${match.request ? '</a>' : ''}
+        </span>&nbsp;<span class="tournament-bracket__token" title="${props.state}">(${key})</span>
       </td>
       <td class="tournament-bracket__result" title="Gewinner">${isWinner ? '🏆️&nbsp;' : ''}</td>
       <td class="tournament-bracket__tip">
