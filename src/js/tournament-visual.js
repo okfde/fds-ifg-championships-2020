@@ -183,13 +183,12 @@
     }
 
     if (!userBets[betPrefix + "name"]) {
-      let name = window.prompt("Unter welchem Namen möchten Sie in der Tipp-Tabelle erscheinen?", namePlaceholder);
+      let name = window.prompt("Unter welchem Namen möchten Sie in der Tipp-Tabelle erscheinen? Durch die Eingabe stimmen Sie unseren Teilnahmebedingungen zu.", namePlaceholder);
       if (name === null) {
         return
       }
       userBets[betPrefix + "name"] = name.substr(0, 50)
     }
-    
     if (loading) {
       window.alert("Ihre letzte Aktion wird noch verarbeitet.")
       return
