@@ -267,6 +267,7 @@
   }
 
   function createTeam (key, props, isWinner, match) {
+    const matchNumber = match.number
     const title = `${props.captain.firstName} ${props.captain.lastName} (${props.state})`
     return `
     <tr class="tournament-bracket__team">
