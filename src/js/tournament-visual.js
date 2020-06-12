@@ -8,48 +8,64 @@
           number: 1,
           team1: 'sh',
           team2: 'st',
+          request1: '188777',
+          request2: '188791',
           // winner: ''
         },
         {
           number: 2,
           team1: 'hb',
           team2: 'mv',
+          request1: '188785',
+          request2: '188790',
           // winner: ''
         },
         {
           number: 3,
           team1: 'rp',
           team2: 'he',
+          request1: '188789',
+          request2: '188782',          
           // winner: ''
         },
         {
           number: 4,
           team1: 'be',
           team2: 'bb',
+          request1: '188779',
+          request2: '188787',
           // winner: ''
         },
         {
           number: 5,
           team1: 'nw',
           team2: 'ni',
+          request1: '188788',
+          request2: '188783',
           // winner: ''
         },
         {
           number: 6,
           team1: 'sn',
           team2: 'by',
+          request1: '188784',
+          request2: '188780',
           // winner: ''
         },
         {
           number: 7,
           team1: 'hh',
           team2: 'bw',
+          request1: '188786',
+          request2: '188792',
           // winner: ''
         },
         {
           number: 8,
           team1: 'sl',
           team2: 'th',
+          request1: '188781',
+          request2: '188793',
           // winner: ''
         },
       ]
@@ -267,8 +283,8 @@
       <div class="tournament-bracket__match" tabindex="0">
         <table class="tournament-bracket__table">
           <tbody class="tournament-bracket__content">
-            ${createTeam(match.team1, team1, match.winner === 'team1', match)}
-            ${createTeam(match.team2, team2, match.winner === 'team2', match)}
+            ${createTeam(match.team1, team1, match.winner === 'team1', match, match.request1)}
+            ${createTeam(match.team2, team2, match.winner === 'team2', match, match.request2)}
           </tbody>
         </table>
       </div>
@@ -276,7 +292,7 @@
     `
   }
 
-  function createTeam (key, props, isWinner, match) {
+  function createTeam (key, props, isWinner, match, matchRequest) {
     const matchNumber = match.number
     const title = `${props.captain.firstName} ${props.captain.lastName} (${props.state})`
     const now = new Date()
@@ -286,9 +302,9 @@
       <td class="tournament-bracket__image" title="${title}"><img src="${imagePath}${props.img}"></td>
       <td class="tournament-bracket__label" title="${title}">
         <span class="tournament-bracket__name">
-          ${match.request ? `<a href="/a/${match.request}">` : ''}
+          ${matchRequest ? `<a href="/a/${matchRequest}">` : ''}
           ${props.captain.firstName.charAt(0)}. ${props.captain.lastName}
-          ${match.request ? '</a>' : ''}
+          ${matchRequest ? '</a>' : ''}
         </span>&nbsp;<span class="tournament-bracket__token" title="${props.state}">(${key})</span>
       </td>
       <td class="tournament-bracket__result" title="Gewinner">${isWinner ? '🏆️&nbsp;' : ''}</td>
