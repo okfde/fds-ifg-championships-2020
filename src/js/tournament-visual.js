@@ -146,6 +146,7 @@
   var userBets = {}
   var loading = false
   var minBettableMatchNumber = 1
+  var bettingDeadline = new Date(1591956000 * 1000) // Fri, 12 Jun 12:00 UTC + 2
 
   rounds.forEach(r => {
     if (r.matches.length > 0) {
@@ -181,6 +182,11 @@
       window.alert("Sie müssen eingeloggt sein, um am Tippspiel teilzunehmen.")
       return
     }
+    const now = new Date()
+    if (bettingDeadline && bettingDeadline < now) {
+      window.alert("Die aktuelle Tipp-Spiel-Runde ist abgelaufen!")
+      return
+    }
 
     if (!userBets[betPrefix + "name"]) {
       let name = window.prompt("Unter welchem Namen möchten Sie in der Tipp-Tabelle erscheinen? Durch die Eingabe stimmen Sie unseren Teilnahmebedingungen zu.", namePlaceholder);
@@ -199,7 +205,11 @@
     renderBetByMatch(matchNumber, true)
 
     getBet(function (data) {
-      userBets = data.user || {}
+      if (data.error) {
+        window.alert(data.error)
+      } else {
+        userBets = data.user || {}
+      }
       loading = false
       renderBetByMatch(matchNumber, false)
     }, `match=${matchNumber}&bet=${team}&name=${encodeURIComponent(userBets[betPrefix + "name"])}`)
@@ -269,6 +279,8 @@
   function createTeam (key, props, isWinner, match) {
     const matchNumber = match.number
     const title = `${props.captain.firstName} ${props.captain.lastName} (${props.state})`
+    const now = new Date()
+    const canBet = matchNumber >= minBettableMatchNumber && (!bettingDeadline || now < bettingDeadline)
     return `
     <tr class="tournament-bracket__team">
       <td class="tournament-bracket__image" title="${title}"><img src="${imagePath}${props.img}"></td>
@@ -281,7 +293,7 @@
       </td>
       <td class="tournament-bracket__result" title="Gewinner">${isWinner ? '🏆️&nbsp;' : ''}</td>
       <td class="tournament-bracket__tip">
-        ${ matchNumber >= minBettableMatchNumber ?
+        ${ canBet ?
           `<a href="#" data-team="${key}" data-match="${matchNumber}">${renderBet(key, matchNumber, true)}</a>` :
           renderBet(key, matchNumber, false)
         }
