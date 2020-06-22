@@ -10,7 +10,7 @@
           team2: 'st',
           request1: '188777',
           request2: '188791',
-          // winner: ''
+          winner: 'sh'
         },
         {
           number: 2,
@@ -42,7 +42,7 @@
           team2: 'ni',
           request1: '188788',
           request2: '188783',
-          // winner: ''
+          winner: 'ni'
         },
         {
           number: 6,
@@ -66,7 +66,7 @@
           team2: 'th',
           request1: '188781',
           request2: '188793',
-          // winner: ''
+          winner: 'sl'
         },
       ]
     },
@@ -283,8 +283,8 @@
       <div class="tournament-bracket__match" tabindex="0">
         <table class="tournament-bracket__table">
           <tbody class="tournament-bracket__content">
-            ${createTeam(match.team1, team1, match.winner === 'team1', match, match.request1)}
-            ${createTeam(match.team2, team2, match.winner === 'team2', match, match.request2)}
+            ${createTeam(match.team1, team1, match.winner === match.team1, match, match.request1)}
+            ${createTeam(match.team2, team2, match.winner === match.team2, match, match.request2)}
           </tbody>
         </table>
       </div>
