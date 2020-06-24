@@ -58,7 +58,7 @@
           team2: 'bw',
           request1: '188786',
           request2: '188792',
-          // winner: ''
+          winner: 'hh'
         },
         {
           number: 8,
