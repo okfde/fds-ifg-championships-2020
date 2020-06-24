@@ -73,30 +73,30 @@
     {
       title: 'Runde 2',
       matches: [
-        // {
-        //   number: 9,
-        //   team1: '',
-        //   team2: '',
-        //   winner: ''
-        // },
-        // {
-        //   number: 10,
-        //   team1: '',
-        //   team2: '',
-        //   winner: ''
-        // },
-        // {
-        //   number: 11,
-        //   team1: '',
-        //   team2: '',
-        //   winner: ''
-        // },
-        // {
-        //   number: 12,
-        //   team1: '',
-        //   team2: '',
-        //   winner: ''
-        // },
+        {
+          number: 9,
+          team1: 'sh',
+          team2: '',
+          winner: ''
+        },
+        {
+          number: 10,
+          team1: '',
+          team2: '',
+          winner: ''
+        },
+        {
+          number: 11,
+          team1: 'ni',
+          team2: '',
+          winner: ''
+        },
+        {
+          number: 12,
+          team1: 'hh',
+          team2: 'sl',
+          winner: ''
+        },
       ]
     },
     {
@@ -293,6 +293,13 @@
   }
 
   function createTeam (key, props, isWinner, match, matchRequest) {
+    if (props === undefined) {
+      return `
+      <tr class="tournament-bracket__team">
+      <td class="tournament-bracket__image" style="height:28px"></td>
+      <td class="tournament-bracket__label text-center w-100"><strong>?</strong></td>
+      </tr>`
+    }
     const matchNumber = match.number
     const title = `${props.captain.firstName} ${props.captain.lastName} (${props.state})`
     const now = new Date()
