@@ -26,7 +26,7 @@
           team2: 'he',
           request1: '188789',
           request2: '188782',          
-          // winner: ''
+          winner: 'he'
         },
         {
           number: 4,
