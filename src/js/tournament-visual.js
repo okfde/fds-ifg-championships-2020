@@ -81,7 +81,7 @@
         },
         {
           number: 10,
-          team1: '',
+          team1: 'he',
           team2: '',
           winner: ''
         },
