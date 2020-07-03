@@ -18,7 +18,7 @@
           team2: 'mv',
           request1: '188785',
           request2: '188790',
-          // winner: ''
+          winner: 'hb'
         },
         {
           number: 3,
@@ -76,7 +76,7 @@
         {
           number: 9,
           team1: 'sh',
-          team2: '',
+          team2: 'hb',
           winner: ''
         },
         {
