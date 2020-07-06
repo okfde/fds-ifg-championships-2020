@@ -34,7 +34,7 @@
           team2: 'bb',
           request1: '188779',
           request2: '188787',
-          // winner: ''
+          winner: 'bb'
         },
         {
           number: 5,
@@ -82,7 +82,7 @@
         {
           number: 10,
           team1: 'he',
-          team2: '',
+          team2: 'bb',
           winner: ''
         },
         {
