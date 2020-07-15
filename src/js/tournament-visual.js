@@ -50,7 +50,7 @@
           team2: 'by',
           request1: '188784',
           request2: '188780',
-          // winner: ''
+          winner: 'sn'
         },
         {
           number: 7,
@@ -88,7 +88,7 @@
         {
           number: 11,
           team1: 'ni',
-          team2: '',
+          team2: 'sn',
           winner: ''
         },
         {
@@ -132,6 +132,14 @@
   const betURL = '/tippspiel/'
   const betPrefix = 'fds_meisterschaften_2020_'
 
+  var imagePath = "img/"
+  var loggedIn = false
+  var namePlaceholder = ''
+  var userBets = {}
+  var loading = false
+  var minBettableMatchNumber = 9
+  var bettingDeadline = new Date(1595412000 * 1000) // Wed, 22 Jul 12:00 UTC + 2
+
   function getBet(callback, data) {
     var request = new XMLHttpRequest();
     request.open(data ? 'POST' : 'GET', betURL, true);
@@ -155,20 +163,6 @@
     };
     request.send(data);
   }
-
-  var imagePath = "img/"
-  var loggedIn = false
-  var namePlaceholder = ''
-  var userBets = {}
-  var loading = false
-  var minBettableMatchNumber = 1
-  var bettingDeadline = new Date(1591956000 * 1000) // Fri, 12 Jun 12:00 UTC + 2
-
-  rounds.forEach(r => {
-    if (r.matches.length > 0) {
-      minBettableMatchNumber = r.matches[0].number
-    }
-  })
 
   function init () {
     const pathHelperImage = document.getElementById('path-helper')
