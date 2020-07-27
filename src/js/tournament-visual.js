@@ -77,7 +77,7 @@
           number: 9,
           team1: 'sh',
           team2: 'hb',
-          winner: ''
+          winner: 'sh'
         },
         {
           number: 10,
@@ -102,18 +102,18 @@
     {
       title: 'Halbfinale',
       matches: [
-        // {
-        //   number: 13,
-        //   team1: '',
-        //   team2: '',
-        //   winner: ''
-        // },
-        // {
-        //   number: 14,
-        //   team1: '',
-        //   team2: '',
-        //   winner: ''
-        // },
+        {
+          number: 13,
+          team1: 'sh',
+          team2: '',
+          winner: ''
+        },
+        {
+          number: 14,
+          team1: '',
+          team2: '',
+          winner: ''
+        },
       ]
     },
     {
