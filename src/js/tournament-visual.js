@@ -83,7 +83,7 @@
           number: 10,
           team1: 'he',
           team2: 'bb',
-          winner: ''
+          winner: 'he'
         },
         {
           number: 11,
@@ -105,7 +105,7 @@
         {
           number: 13,
           team1: 'sh',
-          team2: '',
+          team2: 'he',
           winner: ''
         },
         {
