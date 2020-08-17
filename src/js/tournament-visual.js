@@ -89,7 +89,7 @@
           number: 11,
           team1: 'ni',
           team2: 'sn',
-          winner: ''
+          winner: 'ni'
         },
         {
           number: 12,
@@ -110,7 +110,7 @@
         },
         {
           number: 14,
-          team1: '',
+          team1: 'ni',
           team2: '',
           winner: ''
         },
