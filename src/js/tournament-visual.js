@@ -145,8 +145,8 @@
   var namePlaceholder = ''
   var userBets = {}
   var loading = false
-  var minBettableMatchNumber = 9
-  var bettingDeadline = new Date(1595412000 * 1000) // Wed, 22 Jul 12:00 UTC + 2
+  var minBettableMatchNumber = 13
+  var bettingDeadline = new Date(1598608800 * 1000) // Fri Aug 28 2020 12:00:00 GMT+0200
 
   function getBet(callback, data) {
     var request = new XMLHttpRequest();
