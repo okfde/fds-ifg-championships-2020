@@ -77,25 +77,33 @@
           number: 9,
           team1: 'sh',
           team2: 'hb',
+          request1: '193275',
+          request2: '193277',
           winner: 'sh'
         },
         {
           number: 10,
           team1: 'he',
           team2: 'bb',
+          request1: '193276',
+          request2: '193281',
           winner: 'he'
         },
         {
           number: 11,
           team1: 'ni',
           team2: 'sn',
+          request1: '193279',
+          request2: '193278',
           winner: 'ni'
         },
         {
           number: 12,
           team1: 'hh',
           team2: 'sl',
-          winner: ''
+          request1: '193280',
+          request2: '193274',
+          winner: 'hh'
         },
       ]
     },
@@ -111,7 +119,7 @@
         {
           number: 14,
           team1: 'ni',
-          team2: '',
+          team2: 'hh',
           winner: ''
         },
       ]
