@@ -131,12 +131,12 @@
     {
       title: 'Finale',
       matches: [
-        // {
-        //   number: 15,
-        //   team1: '',
-        //   team2: '',
-        //   winner: ''
-        // },
+        {
+          number: 15,
+          team1: 'sh',
+          team2: '',
+          winner: ''
+        },
       ]
     },
   ]
