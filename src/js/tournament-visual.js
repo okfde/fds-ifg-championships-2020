@@ -135,7 +135,7 @@
           number: 15,
           team1: 'sh',
           team2: '',
-          winner: ''
+          winner: 'sh'
         },
       ]
     },
